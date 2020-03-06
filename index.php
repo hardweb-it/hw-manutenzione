@@ -104,5 +104,5 @@ function hw_is_hardweb_user() {
 		return true;
 	} else {
 		return false;
-	}
+	} 
 }
