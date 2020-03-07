@@ -3,7 +3,7 @@
 Plugin Name: Manutenzione Hardweb.it
 Plugin URI:  https://www.hardweb.it
 Description: Plugin di gestione manutenzione portali
-Version:     2.0.1
+Version:     2.0.2
 Author:      Hardweb.it
 Author URI:  https://www.hardweb.it/wp-plugins/
 Copyright: © 2018 Hardweb IT
