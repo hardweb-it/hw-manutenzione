@@ -14,8 +14,8 @@
 if(!defined('ABSPATH')) exit;
 #DEFINE
 define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.0' ); //VERSION
-define( 'HW_MANUTENZIONE_REPO_URL', 'http://git.hardweb.it' );
-define( 'HW_MANUTENZIONE_ITEM_ID', 47 );
+define( 'HW_MANUTENZIONE_REPO_URL', 'http://hardweb.it' );
+define( 'HW_MANUTENZIONE_ITEM_ID', 2151 );
 define( 'HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE', 'hw-manutenzione-license' );
 define( 'HW_MANUTENZIONE_ITEM_NAME', 'Manutenzione by Hardweb.it' );
 define( 'HW_MANUTENZIONE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
