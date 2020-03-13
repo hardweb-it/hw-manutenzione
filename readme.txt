@@ -19,6 +19,10 @@ Invia informazioni sullo status del sito e comunica con i sistemi di Hardweb.it 
 Nessun dato personale o sensibile viene scambiato, ma solo dati tecnici relativi alle versioni installate di temi, plugin ecc...
  
 == Changelog ==
+
+= 2.1.1 =
+* Testing new license check system
+
 = 2.1.0 =
 * Add features and other bugs to fix later
 

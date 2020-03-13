@@ -3,7 +3,7 @@
 * Plugin Name: Manutenzione by Hardweb.it
 * Plugin URI:  https://www.hardweb.it
 * Description: Plugin di gestione manutenzione portali
-* Version:     2.1.0
+* Version:     2.1.1
 * Author:      Hardweb.it
 * Author URI:  https://www.hardweb.it
 * Copyright: © 2020 Hardweb IT
@@ -13,7 +13,8 @@
 #SECURITY CHECK
 if(!defined('ABSPATH')) exit;
 #DEFINE
-define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.0' ); //VERSION
+define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.1' ); //VERSION
+define( 'HW_MANUTENZIONE_PLUGIN_SLUG', 'hw-manutenzione' ); //SLUG
 define( 'HW_MANUTENZIONE_REPO_URL', 'http://hardweb.it' );
 define( 'HW_MANUTENZIONE_ITEM_ID', 2151 );
 define( 'HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE', 'hw-manutenzione-license' );
@@ -85,4 +86,32 @@ function hw_manutenzione_license_page() {
 	</div>
 	<?php
 }
+
+
+add_filter('plugin_row_meta', function($plugin_meta, $pluginFile) {
+    //Only modify our own plugin.
+    if (plugin_basename(__FILE__) === $pluginFile) {
+
+        //Check if the details link is already among the links (because there is an update)
+        foreach ($plugin_meta as $existing_link) {
+            if (strpos($existing_link, 'tab=plugin-information') !== false) {
+                return $plugin_meta;
+            }
+        }
+
+        //Get plugin info (need the name to mirror WP's own method)
+        $plugin_info = get_plugin_data(__FILE__);
+		
+		$license_valid = hw_manutenzione_get_check_license();
+		if (!$license_valid) {
+			$message = '<tr class="plugin-update-tr" id="' . HW_MANUTENZIONE_PLUGIN_SLUG . '-update" data-slug="' . HW_MANUTENZIONE_PLUGIN_SLUG . '" data-plugin="' . HW_MANUTENZIONE_PLUGIN_SLUG . '/' . HW_MANUTENZIONE_PLUGIN_FULLPATH . '">';
+			$message .= '<td colspan="3" class="plugin-update colspanchange">';
+			$message .= '<div class="update-message notice inline notice-warning notice-alt">';
+			$message .= 'LICENZA NON VALIDA';
+			$message .= '</div></td></tr>';
+			$plugin_meta[] = $message;
+		}
+    }
+    return $plugin_meta;
+}, 10, 2);
 ?>
