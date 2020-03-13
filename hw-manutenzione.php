@@ -31,6 +31,7 @@ function hw_manutenzione_license_menu() {
 	add_plugins_page( 'Manutenzione by Hardweb.it', 'Manutenzione by Hardweb.it', 'manage_options', HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE, 'hw_manutenzione_license_page' );
 }
 add_action('admin_menu', 'hw_manutenzione_license_menu');
+
 function hw_manutenzione_license_page() {
 	$license = get_option( 'hw_manutenzione_license_key' );
 	$status  = get_option( 'hw_manutenzione_license_status' );
@@ -86,7 +87,6 @@ function hw_manutenzione_license_page() {
 	</div>
 	<?php
 }
-
 
 add_filter('plugin_row_meta', function($plugin_meta, $pluginFile) {
     //Only modify our own plugin.
