@@ -28,7 +28,7 @@ include_once(HW_MANUTENZIONE_PLUGIN_DIR.'/includes/hw-manutenzione-functions.php
 include_once(HW_MANUTENZIONE_PLUGIN_DIR.'/includes/hw-manutenzione-plugin-updater.php');
 
 function hw_manutenzione_license_menu() {
-	add_management_page( 'Manutenzione by Hardweb.it', 'Manutenzione by Hardweb.it', 'manage_options', HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE, 'hw_manutenzione_license_page' );
+	add_plugins_page( 'Manutenzione by Hardweb.it', 'Manutenzione by Hardweb.it', 'manage_options', HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE, 'hw_manutenzione_license_page' );
 }
 add_action('admin_menu', 'hw_manutenzione_license_menu');
 function hw_manutenzione_license_page() {
@@ -109,7 +109,7 @@ add_filter('plugin_row_meta', function($plugin_meta, $pluginFile) {
 			$message .= '<div class="update-message notice inline notice-warning notice-alt">';
 			$message .= 'LICENZA NON VALIDA';
 			$message .= '</div></td></tr>';
-			$plugin_meta[] = $message;
+			$plugin_meta[] = $message;		
 		}
     }
     return $plugin_meta;
