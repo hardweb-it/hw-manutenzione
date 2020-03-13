@@ -3,7 +3,7 @@
 * Plugin Name: Manutenzione by Hardweb.it
 * Plugin URI:  https://www.hardweb.it
 * Description: Plugin di gestione manutenzione portali
-* Version:     2.1.1
+* Version:     2.1.2
 * Author:      Hardweb.it
 * Author URI:  https://www.hardweb.it
 * Copyright: © 2020 Hardweb IT
@@ -13,7 +13,7 @@
 #SECURITY CHECK
 if(!defined('ABSPATH')) exit;
 #DEFINE
-define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.1' ); //VERSION
+define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.2' ); //VERSION
 define( 'HW_MANUTENZIONE_PLUGIN_SLUG', 'hw-manutenzione' ); //SLUG
 define( 'HW_MANUTENZIONE_REPO_URL', 'http://hardweb.it' );
 define( 'HW_MANUTENZIONE_ITEM_ID', 2151 );
