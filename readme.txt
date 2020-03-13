@@ -20,7 +20,7 @@ Nessun dato personale o sensibile viene scambiato, ma solo dati tecnici relativi
  
 == Changelog ==
 
-= 2.1.1 =
+= 2.1.2 =
 * Testing new license check system
 
 = 2.1.0 =
