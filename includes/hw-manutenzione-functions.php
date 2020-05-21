@@ -19,28 +19,42 @@ echo '
 function hw__manutenzione_page() {
 #HIDE ITEMS TO non-hardweb users
 if (hw_is_hardweb_user()) {	
-    // Get theme info
-    $theme_data = wp_get_theme();
-    $theme = $theme_data->Name . ' ' . $theme_data->Version;
 
+	//$core = get_core_updates();
+	$themes = get_theme_updates();
     // Get plugins that have an update
     $updates = get_plugin_updates();
 	
     // WordPress active plugins
     $plugins = get_plugins();
     $active_plugins = get_option('active_plugins', array());
+	$active_theme = get_option('active_theme', array());
 	echo "<div style='margin-top: 50px;'><h3>Plugin da aggiornare</h3></div>";
-	echo "<div style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 60%;min-height:200px'>Eseguiti aggiornamenti plugin:<br>
+	echo "<div style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 60%;'><span style='font-weight: bold;'>Eseguiti aggiornamenti plugin:</span><br>
 	<ul>";
+	//print_r($updates);
     foreach ($plugins as $plugin_path => $plugin) {
         if (!in_array($plugin_path, $active_plugins)) {
             continue;
         }
         if (array_key_exists($plugin_path, $updates)) {
-			echo '<li>'.$plugin['Name'] . ' v' . $plugin['Version'] . ' -> v' . $updates[$plugin_path]->update->new_version .'</li>';
+			echo '<li>'.$plugin['Name'] . ' v' . $plugin['Version'] . ' > v' . $updates[$plugin_path]->update->new_version .'</li>';
 		}
     }
 	echo "</ul></div>";
+	echo "<div style='-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 60%;'><span style='font-weight: bold;'>Eseguiti aggiornamenti core grafico:</span><br>
+	<ul>";
+	
+	// Get theme info
+	//print_r($themes);
+	foreach($themes as $theme_slug => $theme_update_object) {
+		$current_theme = wp_get_theme($theme_slug);
+		echo "<li>". $current_theme->get('Name') . " v" . $current_theme->get('Version');		
+		$theme_object = get_object_vars($theme_update_object);
+		echo " > v" . $theme_object['update']['new_version'] . "</li>";
+	}
+	
+	echo "</ul></div>";	
 }
 }
 
