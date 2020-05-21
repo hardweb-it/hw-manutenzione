@@ -3,7 +3,7 @@
 * Plugin Name: Manutenzione by Hardweb.it
 * Plugin URI:  https://www.hardweb.it
 * Description: Plugin di gestione manutenzione portali
-* Version:     2.1.2
+* Version:     2.1.3
 * Author:      Hardweb.it
 * Author URI:  https://www.hardweb.it
 * Copyright: © 2020 Hardweb IT
@@ -107,7 +107,7 @@ add_filter('plugin_row_meta', function($plugin_meta, $pluginFile) {
 			$message = '<tr class="plugin-update-tr" id="' . HW_MANUTENZIONE_PLUGIN_SLUG . '-update" data-slug="' . HW_MANUTENZIONE_PLUGIN_SLUG . '" data-plugin="' . HW_MANUTENZIONE_PLUGIN_SLUG . '/' . HW_MANUTENZIONE_PLUGIN_FULLPATH . '">';
 			$message .= '<td colspan="3" class="plugin-update colspanchange">';
 			$message .= '<div class="update-message notice inline notice-warning notice-alt">';
-			$message .= 'LICENZA NON VALIDA';
+			$message .= 'LICENZA SCADUTA O NON VALIDA';
 			$message .= '</div></td></tr>';
 			$plugin_meta[] = $message;		
 		}
