@@ -13,7 +13,7 @@
 #SECURITY CHECK
 if(!defined('ABSPATH')) exit;
 #DEFINE
-define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.2' ); //VERSION
+define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.3' ); //VERSION
 define( 'HW_MANUTENZIONE_PLUGIN_SLUG', 'hw-manutenzione' ); //SLUG
 define( 'HW_MANUTENZIONE_REPO_URL', 'http://hardweb.it' );
 define( 'HW_MANUTENZIONE_ITEM_ID', 2151 );
