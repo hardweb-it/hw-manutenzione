@@ -3,7 +3,7 @@ Contributors: giangel84
 Requires at least: 4.9
 Tested up to: 5.4.1
 Requires PHP: 5.6
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -19,6 +19,9 @@ Invia informazioni sullo status del sito e comunica con i sistemi di Hardweb.it 
 Nessun dato personale o sensibile viene scambiato, ma solo dati tecnici relativi alle versioni installate di temi, plugin ecc...
  
 == Changelog ==
+
+= 2.1.4 =
+* Fix plugin update issue
 
 = 2.1.3 =
 * GET more themes information
