@@ -1,7 +1,7 @@
 === Manutenzione by Hardweb.it ===
 Contributors: giangel84
 Requires at least: 4.9
-Tested up to: 5.4.1
+Tested up to: 5.4.2
 Requires PHP: 5.6
 Stable tag: 2.1.4
 License: GPLv2 or later
