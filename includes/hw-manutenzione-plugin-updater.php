@@ -64,31 +64,36 @@ function hw_manutenzione_get_license_message() {
 			//error
 		} else {
 			$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+			$expire_date = date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) );
 			if ( false === $license_data->success ) {
 				switch( $license_data->error ) {
 					case 'expired' :
-						$message = sprintf(
-							__( '<span style="color:#ff0000">SERVIZIO SCADUTO IL %s</span>' ),
-							date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
-						);
+						$message = sprintf(	__( '<span style="color:#ff0000">SERVIZIO SCADUTO IL %s</span>' ), $expire_date);
+						update_option( 'hw_manutenzione_license_expired', 'true' );
+						update_option( 'hw_manutenzione_license_expired_on', $expire_date );
 						break;
 					case 'no_activations_left':
 						$message = __( 'Questa licenza ha raggiunto il limite massimo di attivazioni.' );
+						update_option( 'hw_manutenzione_license_expired', 'true' );
+						update_option( 'hw_manutenzione_license_expired_on', $expire_date );
 						break;						
 					default :
 						$message = __( 'SERVIZIO SCADUTO' );
+						update_option( 'hw_manutenzione_license_expired', 'true' );
+						update_option( 'hw_manutenzione_license_expired_on', $expire_date );
 						break;
 				}
 			} elseif ($license_data->expires == 'lifetime') {
 				
-				$message = __( 'SERVIZIO ATTIVO SENZA SCADENZA' );				
+				$message = __( 'SERVIZIO ATTIVO SENZA SCADENZA' );
+				update_option( 'hw_manutenzione_license_expired', 'false' );
+				update_option( 'hw_manutenzione_license_valid_until', 'Nessuna scadenza prevista' );				
 				
 			} else {
 				
-				$message = sprintf(
-					__( 'SERVIZIO ATTIVO FINO AL %s' ),
-					date_i18n( get_option( 'date_format' ), strtotime( $license_data->expires, current_time( 'timestamp' ) ) )
-				);
+				$message = sprintf( __( 'SERVIZIO ATTIVO FINO AL %s' ), $expire_date );
+				update_option( 'hw_manutenzione_license_expired', 'false' );
+				update_option( 'hw_manutenzione_license_valid_until', $expire_date );
 			}
 		}
 		//print_r($license_data);

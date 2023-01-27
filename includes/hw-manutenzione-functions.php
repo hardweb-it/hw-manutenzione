@@ -15,6 +15,16 @@ echo '
 </div>';
 }
 
+#ADD NOTICE IF EXPIRED
+add_action( 'admin_notices', 'hw__manutenzione_expired_notice');
+function hw__manutenzione_expired_notice() {
+	$expired = (get_option('hw_manutenzione_license_expired') == 'true') ? true : false;
+	$expired_on = get_option('hw_manutenzione_license_expired_on');
+	if ($expired) {
+		print( '<div class="notice notice-warning is-dismissible"><p><b>ATTENZIONE:</b> Il piano di manutenzione per questo sito risulta <b>scaduto</b> dal '.$expired_on.'! Contatta <a href="https://hardweb.it/" target="_blank">Hardweb.it</a> per maggiori informazioni.</p></div>');
+	}
+}
+
 #CALLED FROM MAIN PLUGIN
 function hw__manutenzione_page() {
 #HIDE ITEMS TO non-hardweb users
@@ -84,7 +94,7 @@ add_action('pre_current_active_plugins', 'hw_manutenzione_hide_plugins');
 function hw_manutenzione_hide_plugins() {
 	# hide plugins from main list
 	global $wp_list_table;
-	$hidearr = array('hw-manutenzione/index.php');
+	$hidearr = array('hw-manutenzione/hw-manutenzione.php');
 	$myplugins = $wp_list_table->items;
 	foreach ($myplugins as $key => $val) {
 		if (in_array($key,$hidearr)) {

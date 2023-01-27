@@ -3,7 +3,7 @@
 * Plugin Name: Manutenzione by Hardweb.it
 * Plugin URI:  https://www.hardweb.it
 * Description: Plugin di gestione manutenzione portali
-* Version:     2.1.5
+* Version:     2.1.7
 * Author:      Hardweb.it
 * Author URI:  https://www.hardweb.it
 * Copyright: © 2020 Hardweb IT
@@ -13,10 +13,10 @@
 #SECURITY CHECK
 if(!defined('ABSPATH')) exit;
 #DEFINE
-define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.4' ); //VERSION
+define( 'HW_MANUTENZIONE_PLUGIN_VERSION', '2.1.7' ); //VERSION
 define( 'HW_MANUTENZIONE_PLUGIN_SLUG', 'hw-manutenzione' ); //SLUG
-define( 'HW_MANUTENZIONE_REPO_URL', 'https://clienti.hardweb.it' );
-define( 'HW_MANUTENZIONE_ITEM_ID', 2151 );
+define( 'HW_MANUTENZIONE_REPO_URL', 'http://clienti.hardweb.it' );
+define( 'HW_MANUTENZIONE_ITEM_ID', 33865 );
 define( 'HW_MANUTENZIONE_PLUGIN_LICENSE_PAGE', 'hw-manutenzione-license' );
 define( 'HW_MANUTENZIONE_ITEM_NAME', 'Manutenzione by Hardweb.it' );
 define( 'HW_MANUTENZIONE_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
@@ -114,4 +114,49 @@ add_filter('plugin_row_meta', function($plugin_meta, $pluginFile) {
     }
     return $plugin_meta;
 }, 10, 2);
+
+/* Dashboard Widget */
+function hw__manutenzione_render_dashboard_widget() {
+	
+	$icon_ok = '';
+	$icon_error = '';
+	$expired = (get_option('hw_manutenzione_license_expired') == 'true') ? true : false;
+	$expired_on = get_option('hw_manutenzione_license_expired_on');
+	$valid_until = get_option('hw_manutenzione_license_valid_until');
+    ?>
+	<style>
+	.hw-manutenzione-dashboard-icon-size {
+		width: 80px;
+		height: 80px;
+		font-size: 80px;
+	}
+	#dashboard_site_health { display: none!important; }
+	</style>
+    <div class="dashboard-widget-wrap" style="display: grid;grid-template-columns: 1fr 2fr;grid-auto-rows: minmax(64px,auto);column-gap: 16px;align-items: center;">
+        <div class="dashboard-widget-left" style="margin-bottom: 0;text-align: center;">
+			<?php if ($expired) { ?>
+			<i class="dashicons dashicons-warning hw-manutenzione-dashboard-icon-size" style="color:red;"></i>
+			<?php } else { ?>
+			<i class="dashicons dashicons-plugins-checked hw-manutenzione-dashboard-icon-size" style="color:#1abc9c;"></i>
+			<?php } ?>
+        </div>
+        <div class="dashboard-widget-right">
+			<?php if ($expired) {
+			echo "<p>Il piano di manutenzione per questo sito risulta <b>scaduto</b> dal $expired_on!<br><br>Contatta <a href=\"https://hardweb.it/\" target=\"_blank\">Hardweb.it</a> per maggiori informazioni.</p>";
+			} else {
+			echo "<p><b>Complimenti!</b> Il piano di manutenzione per questo sito risulta attivo e regolare. Contatta <a href=\"https://hardweb.it/\" target=\"_blank\">Hardweb.it</a> se hai bisogno di assistenza tecnica!<br><br>La scadenza del piano avverr&agrave; il $valid_until</p>";
+			} ?>
+        </div>
+    </div>
+    <?php
+}
+
+add_action('wp_dashboard_setup', 'hw__manutenzione_add_dashboard_widget');
+function hw__manutenzione_add_dashboard_widget() {
+    wp_add_dashboard_widget(
+        'hw__manutenzione_add_dashboard_widget',
+        'Stato Manutenzione del sito',
+        'hw__manutenzione_render_dashboard_widget'
+    );
+}
 ?>
