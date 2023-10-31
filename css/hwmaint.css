@@ -1,3 +1,7 @@
 #wp-admin-bar-options-framework-parent, #footer-thankyou, #footer-left, #footer-upgrade {
 	display: none!important;
 }
+
+.toplevel_page_hw-manutenzione-check img {
+	padding:0!important;
+}

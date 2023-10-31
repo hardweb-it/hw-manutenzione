@@ -3,7 +3,7 @@ Contributors: giangel84
 Requires at least: 4.9
 Tested up to: 6.1.1
 Requires PHP: 5.6
-Stable tag: 2.1.7
+Stable tag: 2.1.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
  
@@ -19,6 +19,11 @@ Invia informazioni sullo status del sito e comunica con i sistemi di Hardweb.it 
 Nessun dato personale o sensibile viene scambiato, ma solo dati tecnici relativi alle versioni installate di temi, plugin ecc...
  
 == Changelog ==
+= 2.1.8 =
+* First refactor
+* new API to auto-check maintenance without license code
+* removing old options
+
 = 2.1.7 =
 * Fix plugin list
 
